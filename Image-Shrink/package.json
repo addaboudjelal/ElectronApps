@@ -1,0 +1,16 @@
+{
+  "name": "imageshrink",
+  "version": "1.0.0",
+  "description": "optimizing images for the web",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "image",
+    "optimize",
+    "compress"
+  ],
+  "author": "Sofiane Adda Boudjelal",
+  "license": "ISC"
+}
