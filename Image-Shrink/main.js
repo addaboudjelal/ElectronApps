@@ -1,13 +1,12 @@
 const path = require('path');
 const os = require('os');
 const { app, BrowserWindow, Menu, globalShortcut, ipcMain, shell } = require('electron');
-// const imagemin = require('imagemin');
-// import imagemin from 'imagemin';
 const imageminMoz = require('imagemin-mozjpeg');
 const imageminPng = require('imagemin-pngquant');
-// const slash = require('slash');
+const log = require('electron-log');
 
-process.env.NODE_ENV = 'development';
+
+process.env.NODE_ENV = 'production';
 
 const isDev = process.env.NODE_ENV !== 'production' ? true : false;
 
@@ -82,10 +81,14 @@ async function shrinkImage({ imgPath, quality, dest }) {
             destination: dest,
             plugins: [imageminPng({ quality: [pngQuality,pngQuality] }), imageminMoz({ quality})]
         });
-        console.log('Files:\n', files);
+        log.info('Files:\n', files);
         shell.openPath(dest);
+
+        mainWindow.webContents.send('image:done');
+
     } catch (error) {
         console.log('Error Loading Image: \n', error);
+        log.error(error);
     }
 }
 

@@ -21,3 +21,9 @@ form.addEventListener('submit', e => {
     });
 
 });
+
+ipcRenderer.on('image:done', () => {
+    M.toast({
+        html: `Image Resized to ${slider.value}% quality`
+    });
+});
