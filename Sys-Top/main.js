@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu } = require('electron')
 const log = require('electron-log')
+const { screen } = require('electron/main')
 
 // Set env
 process.env.NODE_ENV = 'development'
@@ -12,13 +13,16 @@ let mainWindow
 function createMainWindow() {
   mainWindow = new BrowserWindow({
     title: 'SysTop',
-    width: isDev ? 900 : 500,
+    width: isDev ? 700 : 500,
     height: 600,
+    x: 1200,
+    y: 0,
     icon: './assets/icons/icon.png',
     resizable: isDev ? true : false,
     backgroundColor: 'white',
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
     },
   })
 
